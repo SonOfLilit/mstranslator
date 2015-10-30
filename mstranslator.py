@@ -207,8 +207,8 @@ class Translator(object):
     def speak_to_file(self, file, *args, **kwargs):
         resp = requests.get(self.speak(*args, **kwargs))
         if isinstance(file, basestring):
-            with open(file, 'wb'):
-                file.write(resp.content)
+            with open(file, 'wb') as f:
+                f.write(resp.content)
         elif hasattr(file, 'write'):
             file.write(resp.content)
         else:
